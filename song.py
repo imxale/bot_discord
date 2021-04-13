@@ -124,7 +124,7 @@ async def fusee(ctx, help="C'est ma fusée"):
     await ctx.send(embed=embed)
     if voice_channel != None:
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/fusee.mp3"))
+        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/song/fusee.mp3"))
         # Sleep while audio is playing.
         while vc.is_playing():
             time.sleep(9)
@@ -142,7 +142,7 @@ async def mbappe(ctx, help="C'est moi wsh"):
     await ctx.send(embed=embed)
     if voice_channel != None:
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/mbappe.mp3"))
+        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/song/mbappe.mp3"))
         # Sleep while audio is playing.
         while vc.is_playing():
             time.sleep(10)
@@ -159,7 +159,7 @@ async def tki(ctx, help="Jiraya ?"):
     await ctx.send(embed=embed)
     if voice_channel != None:
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/tki.mp3"))
+        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/song/tki.mp3"))
         # Sleep while audio is playing.
         while vc.is_playing():
             time.sleep(3)
@@ -177,7 +177,7 @@ async def haagrah(ctx, help="Fait moi dire haagrah"):
     await ctx.send(embed=embed)
     if voice_channel != None:
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/haagrah.mp3"))
+        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/song/haagrah.mp3"))
         # Sleep while audio is playing.
         while vc.is_playing():
             time.sleep(8)
