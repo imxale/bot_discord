@@ -1,1 +1,1 @@
-web node song.py
+worker: python song.py
