@@ -19,6 +19,7 @@ commande_hello = os.getenv('commande_hello')
 commande_bg = os.getenv('commande_bg')
 commande_ban_anthony = os.getenv('commande_ban_anthony')
 commande_ban_steven = os.getenv('commande_ban_steven')
+commande_ban_nathan = os.getenv('commande_ban_nathan')
 commande_gotaga = os.getenv('commande_gotaga')
 commande_doigby = os.getenv('commande_doigby')
 commande_haagrah = os.getenv('commande_haagrah')
@@ -104,7 +105,17 @@ async def bg(ctx, help="Ton bot pref dit que t'es un turbo bg"):
 
 @bot.command()
 async def ban(ctx, help="Affiche les boloss qui sont ban"):
-    embed = discord.Embed(description="<@!534721754162266132> "+commande_ban_anthony+"\n<@!330845764446060545> "+commande_ban_steven, colour=discord.Colour.purple())
+    embed = discord.Embed(description="<@!607998156105580595> "+commande_ban_nathan, colour=discord.Colour.purple())
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def bastos(ctx):
+    embed = discord.Embed(description="<@!205357566887329792> 'Le **zizou** du ban'\nTu es ``perma ban`` sale bouf, déjà **3** comptes de perma", colour=discord.Colour.purple())
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def james(ctx):
+    embed = discord.Embed(description="<@!254978500300111872> Premier ``perma ban`` pour toi,\nSur les traces du grand **Bastos**", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
 
 @bot.command()
@@ -344,6 +355,8 @@ async def help(ctx):
     embed.add_field(name='``?tesbg [member]``', value="Dit à ton frérot que c'est un turbo bg", inline=False)
     embed.add_field(name='``?chef``', value="On a une cheffe", inline=False)
     embed.add_field(name='``?ban``', value="Affiche les boloss qui sont ban", inline=False)
+    embed.add_field(name='``?bastos``', value="Le zizou du ban", inline=False)
+    embed.add_field(name='``?james``', value="Un bouf du ban", inline=False)
     embed.add_field(name='``?ernesto``', value="Tu me connait pas ?", inline=False)
     embed.add_field(name='``?haagrah``', value="Fait moi dire haagrah", inline=False)
     embed.add_field(name='``?doigby``', value="Je te lance l'hymne du navire", inline=False)
