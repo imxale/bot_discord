@@ -110,7 +110,7 @@ async def ban(ctx, help="Affiche les boloss qui sont ban"):
 
 @bot.command()
 async def deli(ctx, help="C'est quoi deli"):
-    embed = discord.Embed(description="!deli\n!deily\n!dayly\n<@!534721754162266132> le bilingue de ce discord", colour=discord.Colour.purple())
+    embed = discord.Embed(description="<@!534721754162266132> le bilingue de ce discord\n!deli\n!deily\n!dayly", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
 
 @bot.command()
@@ -355,13 +355,12 @@ async def help(ctx):
     #embed = discord.Embed(
         #colour = discord.Colour.purple())
     embed = discord.Embed(title="La liste de mes commandes frérot", colour=discord.Colour.purple())
-    embed.set_author(name='Autor : Amiral - imxale', url="https://github.com/imxale/bot_discord")
+    embed.set_author(name='Autor : Amiral - imxale', url="https://github.com/imxale")
     embed.add_field(name='``?bg``', value="Ton bot pref dit que t'es un turbo bg", inline=False)
-    embed.add_field(name='``?deli``', value="", inline=False)
     embed.add_field(name='``?tesbg [member]``', value="Dit à ton frérot que c'est un turbo bg", inline=False)
     embed.add_field(name='``?chef``', value="On a une cheffe", inline=False)
     embed.add_field(name='``?ban``', value="Affiche les boloss qui sont ban", inline=False)
-    embed.add_field(name='``?deli``', value="C'est quoi deli", inline=False)
+    embed.add_field(name='``?deli``', value="C'est quoi deli ?", inline=False)
     embed.add_field(name='``?bastos``', value="Le zizou du ban", inline=False)
     embed.add_field(name='``?james``', value="Un bouf du ban", inline=False)
     embed.add_field(name='``?ernesto``', value="Tu me connait pas ?", inline=False)
