@@ -110,7 +110,7 @@ async def ban(ctx, help="Affiche les boloss qui sont ban"):
 
 @bot.command()
 async def deli(ctx, help="C'est quoi deli"):
-    embed = discord.Embed(description="<@!534721754162266132> le bilingue de ce discord\n!deli\n!deily\n!dayly", colour=discord.Colour.purple())
+    embed = discord.Embed(description="<@!534721754162266132> le bilingue de ce discord\n``!deli``\n``!deily``\n``!dayly``", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
 
 @bot.command()
