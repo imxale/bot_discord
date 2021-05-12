@@ -4,7 +4,6 @@ import discord
 import youtube_dl
 import asyncio
 import time
-import discord
 from discord.utils import get
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -29,78 +28,15 @@ client = discord.Client()
 
 bot = commands.Bot(command_prefix='?')
 
-#client = commands.Bot(command_prefix='!')
-"""
-@client.event
-async def on_message(message):
-    if message.content == '!ernesto':
-        await message.channel.send(commande_hello)
-    if message.content == '!bg':
-        await message.channel.send("<@!" + format(message.author.id)+"> "+commande_bg)
-    if message.content == "!ban":
-        await message.channel.send("<@!534721754162266132> "+commande_ban_anthony)
-    if message.content == "!gotaga":
-        await message.channel.send(commande_gotaga)
-"""
-"""
-@client.command()
-async def play(ctx, url : str):
-    song_there = os.path.isfile("song.mp3")
-    try:
-        if song_there:
-            os.remove("song.mp3")
-    except PermissionError:
-        await ctx.send("Wait for the current playing music to end or use the 'stop' command")
-        return
 
-    voiceChannel = ctx.author.voice.channel
-    await voiceChannel.connect()
-    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-    for file in os.listdir("./"):
-        if file.endswith(".mp3"):
-            os.rename(file, "song.mp3")
-    voice.play(discord.FFmpegPCMAudio("song.mp3"))
-
-
-@client.command()
-async def leave(ctx):
-    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    if voice.is_connected():
-        await voice.disconnect()
-    else:
-        await ctx.send("The bot is not connected to a voice channel.")
-
-"""
-"""
-@bot.command()
-async def ernestohelp(ctx):
-    await ctx.send("Turbo bg "+"<@!" + format(ctx.message.author.id)+"> essaye les commandes : \n!bg \n!tesbg '@...' \n!ban \n!doigby \n!gotaga \n!ernesto \n!haagrah \n!chef")
-"""
 @bot.command()
 async def tesbg(ctx, id):
     embed = discord.Embed(description=id+" t'es un **turbo bg** !", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
-"""
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-"""
+
 @bot.command(name='bg')
 async def bg(ctx, help="Ton bot pref dit que t'es un turbo bg"):
     embed = discord.Embed(description="<@!" + format(ctx.message.author.id)+"> "+commande_bg, colour=discord.Colour.purple())
-        #colour = discord.Colour.purple())
-    #embed.add_field(name="<@!" + format(ctx.message.author.id)+"> "+commande_bg,value="")
     await ctx.send(embed=embed)
 
 @bot.command()
@@ -109,7 +45,7 @@ async def ban(ctx, help="Affiche les boloss qui sont ban"):
     await ctx.send(embed=embed)
 
 @bot.command()
-async def deli(ctx, help="C'est quoi deli"):
+async def deli(ctx, help="C'est quoi deli ?"):
     embed = discord.Embed(description="<@!534721754162266132> le bilingue de ce discord\n``!deli``\n``!deily``\n``!dayly``", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
 
@@ -203,23 +139,6 @@ async def haagrah(ctx, help="Fait moi dire haagrah"):
     # Delete command after the audio is done playing.
     #await ctx.message.delete()
 
-"""
-@bot.command()
-async def haagrah(ctx):
-    client = ctx.guild.voice_client
-
-    if client and client.channel:
-        video = Video("https://www.youtube.com/watch?v=uBPeAp7gxOQ")
-        musics[ctx.guild].append(video)
-    else:
-        channel = ctx.author.voice.channel
-        video = Video("https://www.youtube.com/watch?v=uBPeAp7gxOQ")
-        musics[ctx.guild] = []
-        client = await channel.connect()
-        #await ctx.send(f"Je lance : {video.url}")
-        play_song(client, musics[ctx.guild], video)
-    await ctx.send(commande_haagrah)
-"""
 @bot.command()
 async def doigby(ctx, help="Je te lance l'hymne"):
     #print("play")
@@ -237,15 +156,9 @@ async def doigby(ctx, help="Je te lance l'hymne"):
         #await ctx.send(f"Je lance : {video.url}")
         play_song(client, musics[ctx.guild], video)
     await ctx.send(embed=embed)
-"""
-@bot.command()
-async def test(ctx):
-    channel = bot.get_channel(787749067106156584)
-    await channel.send("https://www.youtube.com/watch?v=aaEgiYVEjX4")
-"""
+
 @bot.command()
 async def gotaga(ctx, help="Je travaille"):
-    #print("play")
     client = ctx.guild.voice_client
     embed = discord.Embed(description=commande_gotaga, colour=discord.Colour.purple())
     if client and client.channel:
@@ -268,8 +181,6 @@ async def on_ready():
     print("Ready")
     embed = discord.Embed(description="Je suis **connecté** mes turbo bg ! \nEssaye la commande ``?help`` pour en savoir plus", colour=discord.Colour.purple())
     channel = bot.get_channel(773689379100033064)
-    #voice_channel=bot.get_channel(787438295012343808)
-    #vc = await voice_channel.connect()
     await channel.send(embed=embed)
     await bot.change_presence(activity=discord.Game(name="Des chiffres et des lettres"))
 
@@ -285,21 +196,7 @@ async def leave(ctx, help="Fait moi quitté le vocal"):
     client = ctx.guild.voice_client
     await client.disconnect()
     musics[ctx.guild] = []
-"""
-@bot.command()
-async def resume(ctx):
-    client = ctx.guild.voice_client
-    if client.is_paused():
-        client.resume()
 
-
-@bot.command()
-async def pause(ctx):
-    client = ctx.guild.voice_client
-    if not client.is_paused():
-        client.pause()
-
-"""
 @bot.command()
 async def skip(ctx, help="Je te skip le prochain son mon frérot"):
     client = ctx.guild.voice_client
@@ -337,16 +234,6 @@ async def play(ctx, url, help="Je lance le son que tu veux avec un lien YT"):
         await ctx.send(f"Je lance : {video.url}")
         play_song(client, musics[ctx.guild], video)
 
-class bcolors:
-    green = '\033[92m' #GREEN
-    yellow = '\033[93m' #YELLOW
-    red = '\033[91m' #RED
-    reset = '\033[0m' #RESET COLOR
-
-import colorama
-from colorama import Fore
-from colorama import Style
-
 #We delete default help command
 bot.remove_command("help")
 #Embeded help with list and details of commands
@@ -370,11 +257,8 @@ async def help(ctx):
     embed.add_field(name='``?mbappe``', value="C'est moi wsh", inline=False)
     embed.add_field(name='``?fusee``', value="C'est ma fusée", inline=False)
     embed.add_field(name='``?tki``', value="PTDR t ki ?", inline=False)
-    #embed.add_field(name="**Autor :**", value="<@!286485781688745985>")
     embed.set_footer(text="Dont spam voices commands")
     await ctx.send(embed=embed)
-    #print(f"{bcolors.green}?bg{bcolors.reset}")
 
-#client.run(TOKEN)
 bot.run(TOKEN)
 
