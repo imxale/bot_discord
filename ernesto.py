@@ -22,52 +22,67 @@ commande_ban_nathan = os.getenv('commande_ban_nathan')
 commande_gotaga = os.getenv('commande_gotaga')
 commande_doigby = os.getenv('commande_doigby')
 commande_haagrah = os.getenv('commande_haagrah')
-commande_oceane1 = os.getenv('commande_oceane1')
-commande_oceane2 = os.getenv('commande_oceane2')
 client = discord.Client()
 
 bot = commands.Bot(command_prefix='?')
 
+@bot.event
+async def on_ready():
+    print("Je suis connecté")
+    embed = discord.Embed(description="Je suis **connecté** mes turbo bg ! \nEssaye la commande ``?help`` pour en savoir plus", 
+    colour=discord.Colour.purple())
+    channel = bot.get_channel(773689379100033064)
+    await channel.send(embed=embed)
+    await bot.change_presence(activity=discord.Game(name="Des chiffres et des lettres"))
 
 @bot.command()
 async def tesbg(ctx, id):
     embed = discord.Embed(description=id+" t'es un **turbo bg** !", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?tesbg'")
 
 @bot.command(name='bg')
 async def bg(ctx, help="Ton bot pref dit que t'es un turbo bg"):
     embed = discord.Embed(description="<@!" + format(ctx.message.author.id)+"> "+commande_bg, colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?bg'")
 
 @bot.command()
 async def ban(ctx, help="Affiche les boloss qui sont ban"):
     embed = discord.Embed(description="Malheureusement plus aucun bouf n'est ban !", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?ban'")
 
 @bot.command()
 async def deli(ctx, help="C'est quoi deli ?"):
     embed = discord.Embed(description="<@!534721754162266132> le bilingue de ce discord\n``!deli``\n``!deily``\n``!dayly``", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?deli'")
 
 @bot.command()
 async def bastos(ctx):
     embed = discord.Embed(description="<@!205357566887329792> 'Le **zizou** du ban'\nTu es ``perma ban`` sale bouf, déjà **3** comptes de perma", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?bastos'")
 
 @bot.command()
 async def james(ctx):
     embed = discord.Embed(description="<@!254978500300111872> Premier ``perma ban`` pour toi,\nSur les traces du grand **Bastos**", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?james'")
 
 @bot.command()
 async def ernesto(ctx, help="C'est moi"):
     embed = discord.Embed(description=commande_hello, colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?ernesto'")
 
 @bot.command()
 async def chef(ctx, help="On a une cheffe"):
     embed = discord.Embed(description="Garde à vous <@!689169698419638357> is in the place !", colour=discord.Colour.purple())
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?chef'")
+
 @bot.command()
 async def fusee(ctx, help="C'est ma fusée"):
     embed = discord.Embed(description="Ça c'est ma **fusée** enculé", colour=discord.Colour.purple())
@@ -85,6 +100,7 @@ async def fusee(ctx, help="C'est ma fusée"):
         await ctx.send("<@!" + format(ctx.message.author.id)+"> is not in a channel.")
     # Delete command after the audio is done playing.
     #await ctx.message.delete()
+    print(format(ctx.author.name)+" à utilisé la commande '?fusee'")
 
 @bot.command()
 async def mbappe(ctx, help="C'est moi wsh"):
@@ -103,6 +119,7 @@ async def mbappe(ctx, help="C'est moi wsh"):
         await ctx.send("<@!" + format(ctx.message.author.id)+"> is not in a channel.")
     # Delete command after the audio is done playing.
     #await ctx.message.delete()
+    print(format(ctx.author.name)+" à utilisé la commande '?mbappe'")
 
 @bot.command()
 async def tki(ctx, help="Jiraya ?"):
@@ -120,6 +137,7 @@ async def tki(ctx, help="Jiraya ?"):
         await ctx.send("<@!" + format(ctx.message.author.id)+"> is not in a channel.")
     # Delete command after the audio is done playing.
     #await ctx.message.delete()
+    print(format(ctx.author.name)+" à utilisé la commande '?tki'")
 
 @bot.command()
 async def haagrah(ctx, help="Fait moi dire haagrah"):
@@ -138,6 +156,7 @@ async def haagrah(ctx, help="Fait moi dire haagrah"):
         await ctx.send("<@!" + format(ctx.message.author.id)+"> is not in a channel.")
     # Delete command after the audio is done playing.
     #await ctx.message.delete()
+    print(format(ctx.author.name)+" à utilisé la commande '?haagrah'")
 
 @bot.command()
 async def doigby(ctx, help="Je te lance l'hymne"):
@@ -156,6 +175,7 @@ async def doigby(ctx, help="Je te lance l'hymne"):
         #await ctx.send(f"Je lance : {video.url}")
         play_song(client, musics[ctx.guild], video)
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?doigby'")
 
 @bot.command()
 async def gotaga(ctx, help="Je travaille"):
@@ -172,17 +192,10 @@ async def gotaga(ctx, help="Je travaille"):
         #await ctx.send(f"Je lance : {video.url}")
         play_song(client, musics[ctx.guild], video)
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?gotaga'")
 
 musics = {}
 ytdl = youtube_dl.YoutubeDL()
-
-@bot.event
-async def on_ready():
-    print("Ready")
-    embed = discord.Embed(description="Je suis **connecté** mes turbo bg ! \nEssaye la commande ``?help`` pour en savoir plus", colour=discord.Colour.purple())
-    channel = bot.get_channel(773689379100033064)
-    await channel.send(embed=embed)
-    await bot.change_presence(activity=discord.Game(name="Des chiffres et des lettres"))
 
 class Video:
     def __init__(self, link):
@@ -236,11 +249,9 @@ async def play(ctx, url, help="Je lance le son que tu veux avec un lien YT"):
 
 #We delete default help command
 bot.remove_command("help")
-#Embeded help with list and details of commands
+
 @bot.command(pass_context=True)
 async def help(ctx):
-    #embed = discord.Embed(
-        #colour = discord.Colour.purple())
     embed = discord.Embed(title="La liste de mes commandes frérot", colour=discord.Colour.purple())
     embed.set_author(name='Autor : Amiral - imxale', url="https://github.com/imxale")
     embed.add_field(name='``?bg``', value="Ton bot pref dit que t'es un turbo bg", inline=False)
@@ -259,6 +270,6 @@ async def help(ctx):
     embed.add_field(name='``?tki``', value="PTDR t ki ?", inline=False)
     embed.set_footer(text="Dont spam voices commands")
     await ctx.send(embed=embed)
+    print(format(ctx.author.name)+" à utilisé la commande '?help'")
 
 bot.run(TOKEN)
-
