@@ -84,6 +84,25 @@ async def chef(ctx, help="On a une cheffe"):
     print(format(ctx.author.name)+" à utilisé la commande '?chef'")
 
 @bot.command()
+async def kebab(ctx, help="Petit kebab"):
+    embed = discord.Embed(description="Keeeebaaaab\nun ptit kebab\nkebab kebab", colour=discord.Colour.purple())
+    # Gets voice channel of message author
+    voice_channel = ctx.author.voice.channel
+    await ctx.send(embed=embed)
+    if voice_channel != None:
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio("C:/Bot_Discord/song/kebab.mp3"))
+        # Sleep while audio is playing.
+        while vc.is_playing():
+            time.sleep(9)
+        await vc.disconnect()
+    else:
+        await ctx.send("<@!" + format(ctx.message.author.id)+"> is not in a channel.")
+    # Delete command after the audio is done playing.
+    #await ctx.message.delete()
+    print(format(ctx.author.name)+" à utilisé la commande '?kebab'")
+
+@bot.command()
 async def fusee(ctx, help="C'est ma fusée"):
     embed = discord.Embed(description="Ça c'est ma **fusée** enculé", colour=discord.Colour.purple())
     # Gets voice channel of message author
@@ -230,7 +249,6 @@ def play_song(client, queue, song):
 
     client.play(source, after=next)
 
-
 @bot.command()
 async def play(ctx, url, help="Je lance le son que tu veux avec un lien YT"):
     print("play")
@@ -268,6 +286,7 @@ async def help(ctx):
     embed.add_field(name='``?mbappe``', value="C'est moi wsh", inline=False)
     embed.add_field(name='``?fusee``', value="C'est ma fusée", inline=False)
     embed.add_field(name='``?tki``', value="PTDR t ki ?", inline=False)
+    embed.add_field(name='``?kebab``', value="Qui veut un kebab ?", inline=False)
     embed.set_footer(text="Dont spam voices commands")
     await ctx.send(embed=embed)
     print(format(ctx.author.name)+" à utilisé la commande '?help'")
